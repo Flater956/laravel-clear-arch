@@ -2,20 +2,44 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Http\Request;
 
-class Authenticate extends Middleware
+class Authenticate
 {
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
+     * The authentication guard factory instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
+     * @var Auth
      */
-    protected function redirectTo($request)
+    protected $auth;
+
+    /**
+     * Create a new middleware instance.
+     *
+     * @param Auth $auth
+     * @return void
+     */
+    public function __construct(Auth $auth)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        $this->auth = $auth;
+    }
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param Request $request
+     * @param Closure $next
+     * @return mixed
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        if ($this->auth->guard('api')->guest()) {
+            return response('Unauthorized.', 401);
         }
+
+        return $next($request);
     }
 }
+

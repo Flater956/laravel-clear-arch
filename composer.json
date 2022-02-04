@@ -5,12 +5,25 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "8.0.13",
+        "ext-http": "*",
+        "barryvdh/laravel-dompdf": "^0.9.0",
+        "doctrine/dbal": "^2.9",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.3",
+        "illuminate/mail": "^8.79",
+        "illuminate/redis": "^8.79",
         "laravel/framework": "^8.75",
+        "laravel/lumen-framework": "^8.0",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "laravelista/lumen-vendor-publish": "^8.0",
+        "predis/predis": "^1.1",
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-permission": "^4.2",
+        "tymon/jwt-auth": "^1.0",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^11.3",
+        "zircote/swagger-php": "^3.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
